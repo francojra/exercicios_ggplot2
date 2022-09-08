@@ -12,6 +12,7 @@
 # b) Gráficos de boxplot e violino
 # c) Gráfico de barras com valores de média e erro padrão
 # d) Gráfico de linhas
+# e) Gráfico de dispersão
 
 # Respostas --------------------------------------------------------------------------------------------------------------------------------
 
@@ -130,5 +131,18 @@ ggplot(dados3, aes(x = fct_reorder(skin_color, media),
   geom_errorbar(aes(ymin = media - se, ymax = media + se),
                 width = 0.24, size = 0.8) +
   scale_fill_viridis(discrete = T, option = "D") +
+  labs(y = "Altura (cm)", x = "Cor da pele") +
+  theme_ipsum_es() +
+  theme(legend.position = "none")
+
+# d) Gráfico de linhas
+
+ggplot(dados3, aes(x = skin_color, 
+                   y = media, group = 1)) +
+  geom_line(linetype = "dashed") +
+  geom_point(size = 2.3) +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.13, size = 0.8) +
+  labs(y = "Altura (cm)", x = "Cor da pele") +
   theme_ipsum_es() +
   theme(legend.position = "none")
