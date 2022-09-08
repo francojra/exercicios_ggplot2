@@ -47,3 +47,12 @@ ggplot(dados, aes(x = mass, y = height)) +
 
 ggplot(dados, aes(x = mass)) +
   geom_density()
+
+ggplot(dados, aes(x = height, fill = sex)) +
+  geom_density()
+
+dados1 <- dados %>%
+  drop_na(gender, height)
+
+ggplot(dados1, aes(x = height, fill = gender)) +
+  geom_histogram(bins = 30)
