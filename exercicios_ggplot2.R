@@ -13,4 +13,11 @@
 # c) Gráfico de barras com valores de média e erro padrão
 # d) Gráfico de linhas
 
+# Respostas --------------------------------------------------------------------------------------------------------------------------------
+
+# Exercício 1
+
+library(dplyr) # Pacote que carrega o banco de dados Starwars
+dados <- starwars
+View(dados)
 
