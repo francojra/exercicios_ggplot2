@@ -56,3 +56,10 @@ dados1 <- dados %>%
 
 ggplot(dados1, aes(x = height, fill = gender)) +
   geom_histogram(bins = 30)
+
+# c) Gráficos de boxplot e violino
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark", "tan")) %>%
+  ggplot(aes(x = skin_color, y = mass)) +
+  geom_boxplot()
