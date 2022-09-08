@@ -24,6 +24,8 @@ View(dados)
 # Exercício 2
 
 library(tidyverse)
+library(viridis)
+library(hrbrthemes)
 
 # Exercício 3
 
@@ -85,6 +87,29 @@ dados %>%
   filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
   ggplot(aes(x = skin_color, y = mass)) +
   geom_boxplot(fill = 'forestgreen', alpha = 0.5, 
-               outlier.colour = "black", outlier.shape = 12) +
+               outlier.colour = "red", outlier.shape = 8,
+               outlier.size = 6) +
+  geom_jitter(position = position_jitter(0.2)) +
   stat_summary(fun = mean, geom = "point", 
                shape = 20, size = 4, color = "red", fill = "red")
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass, fill = skin_color)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", 
+               shape = 20, size = 4, color = "red", fill = "red") +
+  scale_fill_viridis(discrete = TRUE, option = "A") +
+  theme_ipsum() +
+  theme(legend.position = "none")
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass, fill = skin_color)) +
+  geom_violin(fill = "gray", alpha = 0.6, trim = F) +
+  geom_boxplot(width = 0.1) +
+  stat_summary(fun = mean, geom = "point", 
+               shape = 20, size = 2.4, color = "red", fill = "red") +
+  scale_fill_viridis(discrete = TRUE, option = "A") +
+  theme_ipsum() +
+  theme(legend.position = "none")
