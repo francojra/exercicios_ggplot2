@@ -146,3 +146,21 @@ ggplot(dados3, aes(x = skin_color,
   labs(y = "Altura (cm)", x = "Cor da pele") +
   theme_ipsum_es() +
   theme(legend.position = "none")
+
+dados4 <- dados %>%
+  select(skin_color, eye_color, mass) %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark"),
+         eye_color %in% c("blue", "yellow", "red", "brown")) %>%
+  group_by(eye_color, skin_color) %>%
+  summarise(media = mean(mass, na.rm = T)) %>%
+  view()
+
+ggplot(dados4, aes(x = skin_color, 
+                   y = media,
+           color = eye_color,
+           group = eye_color)) +
+  geom_line(size = 1.7) +
+  geom_point(size = 2.3) +
+  scale_color_viridis(discrete = T, option = "D") +
+  labs(y = "Altura (cm)", x = "Cor da pele", color = "Cor dos olhos") +
+  theme_ipsum_es() 
