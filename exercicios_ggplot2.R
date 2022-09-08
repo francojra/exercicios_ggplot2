@@ -110,6 +110,25 @@ dados %>%
   geom_boxplot(width = 0.1) +
   stat_summary(fun = mean, geom = "point", 
                shape = 20, size = 2.4, color = "red", fill = "red") +
-  scale_fill_viridis(discrete = TRUE, option = "A") +
+  scale_fill_viridis(discrete = TRUE, option = "B") +
   theme_ipsum() +
+  theme(legend.position = "none")
+
+# c) Gráfico de barras com média e erro padrão
+
+dados3 <- dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  group_by(skin_color) %>%
+  summarise(media = mean(height, na.rm = T),
+            sd = sd(height, na.rm = T), n = n(),
+            se = sd/sqrt(n)) %>%
+  view()
+
+ggplot(dados3, aes(x = fct_reorder(skin_color, media), 
+                   y = media, fill = skin_color)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.24, size = 0.8) +
+  scale_fill_viridis(discrete = T, option = "D") +
+  theme_ipsum_es() +
   theme(legend.position = "none")
