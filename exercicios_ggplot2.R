@@ -164,3 +164,23 @@ ggplot(dados4, aes(x = skin_color,
   scale_color_viridis(discrete = T, option = "D") +
   labs(y = "Altura (cm)", x = "Cor da pele", color = "Cor dos olhos") +
   theme_ipsum_es() 
+
+# d) Gráfico de dispersão
+
+dados5 <- dados %>%
+  select(mass, height, gender) %>%
+  filter(mass < 500) %>%
+  drop_na(gender) %>%
+  view()
+
+ggplot(dados5, aes(x = mass, 
+                   y = height,
+                  col = gender)) +
+  geom_point(size = 2.3) +
+  scale_color_viridis(discrete = T, option = "D",
+                      labels = c("Feminino", "Masculino")) +
+  labs(y = "Altura (cm)", x = "Massa (g)", color = "Gênero") +
+  theme_ipsum_es() 
+
+
+
