@@ -63,3 +63,28 @@ dados %>%
   filter(skin_color %in% c("grey", "brown", "pale", "dark", "tan")) %>%
   ggplot(aes(x = skin_color, y = mass)) +
   geom_boxplot()
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass)) +
+  geom_violin() 
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass, fill = skin_color)) +
+  geom_violin() 
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass)) +
+  geom_boxplot(fill = 'forestgreen', alpha = 0.5, outlier.shape = NA) +
+  stat_summary(fun = mean, geom = "point", 
+               shape = 20, size = 4, color = "red", fill = "red")
+
+dados %>%
+  filter(skin_color %in% c("grey", "brown", "pale", "dark")) %>%
+  ggplot(aes(x = skin_color, y = mass)) +
+  geom_boxplot(fill = 'forestgreen', alpha = 0.5, 
+               outlier.colour = "black", outlier.shape = 12) +
+  stat_summary(fun = mean, geom = "point", 
+               shape = 20, size = 4, color = "red", fill = "red")
